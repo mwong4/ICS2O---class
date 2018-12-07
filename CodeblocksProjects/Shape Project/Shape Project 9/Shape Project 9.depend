@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1543886655 source:c:\users\max wong\desktop\shape project 9\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<math.h>
+
+1544027154 source:c:\users\max wong\desktop\codeblocksprojects\shape project 9\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<math.h>
+

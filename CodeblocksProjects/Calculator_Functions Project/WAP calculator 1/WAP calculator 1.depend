@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1544106429 source:c:\users\max wong\desktop\codeblocksprojects\wap calculator 1\main.cpp
+	<iostream>
+
+1544133827 source:c:\users\max wong\desktop\codeblocksprojects\calculator_functions project\wap calculator 1\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<math.h>
+

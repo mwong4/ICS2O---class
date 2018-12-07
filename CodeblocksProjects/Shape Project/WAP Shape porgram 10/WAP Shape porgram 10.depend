@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1544051304 source:c:\users\max wong\desktop\codeblocksprojects\shape project\wap shape porgram 10\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<math.h>
+
