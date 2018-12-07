@@ -12,8 +12,8 @@
 /*
 [TO DO]
 
-- Set up error trapping
-- Cleaning up code
+- Currently nothing
+
 */
 
 //Include statements
@@ -33,13 +33,15 @@ float powOperation ( float, float ); //Function prototype for "power of" operati
 float sqrtOperation ( float); //Function prototype for square root operation
 
 float firstInputValue (); //Function prototype to get the first input
-float secondInputValue (); //Function prototype to get the second input
+float secondInputValue ( int ); //Function prototype to get the second input
 
 void spacing (); //Function for spacing
 void printErrorInput (); //Function to print input error
 void performOperation ( int, int, int ); //Function to perform the operation
 
 int mainMenu(); //Function to print the menu and get the input
+
+bool stringChecker( string ); //Function used to check if an input is a float
 
 
 int main()
@@ -48,16 +50,18 @@ int main()
     float firstInput = 0; //First input used in all opeations
     float secondInput = 0; //Second input used in all operations
 
-    float result = 0; //Variable that holds the resulting value
     float opSelected = 0; //Variable that defines the operation selected
 
     bool projectRunning = true; //Bool that defines if the project is still running
 
+    //While loop that, when false, quits program
     while ( projectRunning == true)
     {
 
+    //Used to select operation
         opSelected = mainMenu();
 
+        //Spacing
         spacing();
 
         cout << endl;
@@ -72,11 +76,11 @@ int main()
 
         if( opSelected == 1 || opSelected == 2 || opSelected == 3 || opSelected == 4 || opSelected == 5)
         {
-            secondInput = secondInputValue();
+            secondInput = secondInputValue( opSelected );
         }
 
         if( opSelected == 9 )
-        {W
+        {
 
             projectRunning = false;
         }
@@ -181,7 +185,8 @@ float sqrtOperation ( float firstInput)
 int mainMenu ()
 {
 
-    int pickNumber;
+    std::string pickNumber = " ";
+    int pickNumberI = 0;
 
     cout << endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
@@ -197,9 +202,24 @@ int mainMenu ()
     cout << ">- " << endl;
     cout << ">- /9/. to quit" << endl;
 
-    cin >> pickNumber;
+//Error trapping to make sure the input is an int
+    do
+    {
 
-    return pickNumber;
+        cin >> pickNumber;
+
+        if( stringChecker ( pickNumber ) == 0 )
+        {
+            printErrorInput();
+        }
+        if( stringChecker ( pickNumber ) == 1 )
+        {
+            pickNumberI = ::atof(pickNumber.c_str());
+        }
+    }
+    while( stringChecker ( pickNumber ) == 0);
+
+    return pickNumberI;
 
 }
 
@@ -207,24 +227,90 @@ float firstInputValue ()
 {
 
     float firstInput = 0;
+    std::string input = " ";
 
-    cout << "What is your first number?" << endl;
-    cin >> firstInput;
+    //Error trapping make sure input is a float
+    do
+    {
+        cout << "What is your first number?" << endl;
+        cin >> input;
+
+        if( stringChecker ( input ) == 0)
+        {
+            printErrorInput();
+        }
+
+        if( stringChecker ( input ) == 1)
+        {
+            firstInput = ::atof(input.c_str());
+        }
+
+    }
+    while ( stringChecker ( input ) == 0);
 
     return firstInput;
 }
 
-float secondInputValue ()
+float secondInputValue ( int operation )
 {
 
     float secondInput = 0;
+    std::string input = " ";
 
-    cout << "What is your second number?" << endl;
-    cin >> secondInput;
+//Error trapping make sure input is a float
+//This loop is for when not using division
+    if ( operation != 4 )
+    {
+        do
+        {
+            cout << "What is your second number?" << endl;
+            cin >> input;
+
+            if( stringChecker ( input ) == 0 )
+            {
+                printErrorInput();
+            }
+
+            if( stringChecker ( input ) == 1 )
+            {
+                secondInput = ::atof(input.c_str());
+            }
+
+
+        }
+        while ( stringChecker ( input ) == 0 );
+    }
+
+    //This loop is for when division is being used
+    if (operation == 4)
+    {
+
+        do
+        {
+
+            cout << "What is your second number?" << endl;
+            cin >> input;
+
+            if( stringChecker ( input ) == 0 || secondInput == 0)
+            {
+                printErrorInput();
+            }
+
+            if( stringChecker ( input ) == 1)
+            {
+                secondInput = ::atof(input.c_str());
+            }
+
+
+        }
+        while ( stringChecker ( input ) == 0 || secondInput == 0);
+
+    }
 
     return secondInput;
 }
 
+//Spacing
 void spacing ()
 {
     cout << endl;
@@ -234,6 +320,7 @@ void spacing ()
     return;
 }
 
+//To print an error message
 void printErrorInput ()
 {
     cout << endl;
@@ -242,7 +329,8 @@ void printErrorInput ()
     cout << endl;
 }
 
-void performOperation ( int opSelected, int firstInput, int secondInput )
+//To perform the operation
+void performOperation ( int opSelected        secondInput = secondInputValue();, int firstInput, int secondInput )
 {
     //Performing the operations
 
@@ -275,5 +363,18 @@ void performOperation ( int opSelected, int firstInput, int secondInput )
     {
         sqrtOperation ( firstInput );
     }
+}
+
+//Integer checker for shape selection
+bool stringChecker( string currentNumber )
+{
+    for( string::size_type i = 0; i < currentNumber.size(); ++i )
+    {
+        if ( ( currentNumber[i] != '0' ) && ( currentNumber[i] != '1' ) && ( currentNumber[i] != '2' ) && ( currentNumber[i] != '3' ) && ( currentNumber[i] != '4' ) && ( currentNumber[i] != '5' ) && ( currentNumber[i] != '6' ) && ( currentNumber[i] != '7' ) && ( currentNumber[i] != '8' ) && ( currentNumber[i] != '9' ) && ( currentNumber[i] != '.' ))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
