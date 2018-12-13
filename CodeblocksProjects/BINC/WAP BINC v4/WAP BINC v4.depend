@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1544718424 source:c:\users\max wong\desktop\codeblocksprojects\wap binc v4\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<math.h>
+	<iomanip>
+	<sstream>
+

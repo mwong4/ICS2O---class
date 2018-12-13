@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1544635007 source:c:\users\max wong\desktop\codeblocksprojects\wap basic imaginary number calculator (binc) v2\main.cpp
+	<iostream>
+	<string>
+	<stdlib.h>
+	<math.h>
+	<iomanip>
+	<sstream>
+
