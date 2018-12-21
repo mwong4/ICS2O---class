@@ -48,10 +48,10 @@ void consolHeader( string, string, int); //The UNSC header  used for every UNSC 
 void printInputError(); //Function used to print an input related error message
 void normalHeader();
 
-int actionsMenu( string, string ); //Menu to perform an action. Requires a player name and location
-void experienceMenu( int [], int, string, string ); //Menu to use experience points. Requires the skills array, array size, player name and location
-void mapMenu( string, string ); //Menu to show player the map. Requires a player name and location
-int itemsMenu( int [], string, string ); //Menu that allows the player to see and use collected items. Requires the item list array, player name and location
+int actionsMenu( string, string, int ); //Menu to perform an action. Requires a player name, location and authority
+void experienceMenu( int [], int, string, string, int ); //Menu to use experience points. Requires the skills array, array size, player name, location and authority
+void mapMenu( string, string, int ); //Menu to show player the map. Requires a player name, location and authority
+int itemsMenu( int [], string, string, int ); //Menu that allows the player to see and use collected items. Requires the item list array, player name, location and authority
 
 void wakingUp(); //What the player experiences when waking up
 
@@ -76,15 +76,18 @@ int main()
 
     setXP( playerStats, 5, playerName); //This function will allow the user to select what their starting skills are
 
-    consolHeader( locationSerialCode, playerName, adminPower ); //This function is the consol header when the player is using a computer in the game
+    //consolHeader( locationSerialCode, playerName, adminPower ); //This function is the consol header when the player is using a computer in the game
+
+    wakingUp();
 
     return 0;
 }
 
 //First part of the game when you wake up
-void wakingUp(){
+void wakingUp()
+{
 
-    system("color 2");
+    system("color 7");
 
     string inputAnything;
 
@@ -93,33 +96,71 @@ void wakingUp(){
     cin >> inputAnything;
 
     //If A is inputed, load action menu
-    if( inputAnything == "A" || inputAnything == "a"){
+    if( inputAnything == "A" || inputAnything == "a")
+    {
 
     }
 
     //If X is inputed, load experience menu
-    if( inputAnything == "X" || inputAnything == "x"){
+    if( inputAnything == "X" || inputAnything == "x")
+    {
 
     }
 
     //If M is inputed, load map menu
-    if( inputAnything == "M" || inputAnything == "m"){
+    if( inputAnything == "M" || inputAnything == "m")
+    {
 
     }
 
     //If I is inputed, load items menu
-    if( inputAnything == "I" || inputAnything == "i"){
+    if( inputAnything == "I" || inputAnything == "i")
+    {
 
     }
 
 
 }
 
+//This function allows you to pick your next action. This is the main story section
+int actionsMenu ( string playerName, string serialCode, int auth)
+{
+    normalHeader();
+
+
+}
+
+//This section is the experience menu. It allows you to upgrade your skills
+void experienceMenu ( int playerStats[], int size, string playerName, string serialCode, int auth)
+{
+    consolHeader( playerName, serialCode, auth);
+
+
+}
+
+//This section shows the user the map
+void mapMenu ( string playerName, string serialCode, int auth )
+{
+    consolHeader( playerName, serialCode, auth);
+
+
+}
+
+//This section allows the user to use items
+int itemsMenu ( int playerItems[], string playerName, string serialCode, int auth)
+{
+    consolHeader( playerName, serialCode, auth);
+
+
+}
+
 //This is the normal, non consol header
-void normalHeader(){
+void normalHeader()
+{
 
-    system("color 2");
+    system("color 7");
 
+    cout << endl;
     cout << "========================================================================================" << endl;
     cout << "| press: [A] for action menu || [X] for experience menu || [M] for map || [I] for items " << endl;
     cout << "|_______________________________________________________________________________________" << endl;
@@ -223,20 +264,24 @@ void setXP( int playerStats[], int size, string playerName)
             cout << ">- You have " << currentXPPoints << " points left" << endl;
 
             //Error trapping and getting the players choice of skills
-            do{
-            cout << endl;
-            cout << "please enter a number" << endl;
-            cin >> inputValueS;
+            do
+            {
+                cout << endl;
+                cout << "please enter a number" << endl;
+                cin >> inputValueS;
 
-            //Error trapping to see if the input is an integer
-            if(stringChecker( inputValueS ) == 1){
-                inputValueI = ::atof(inputValueS.c_str());
-            }
-            if(stringChecker( inputValueS ) == 0){
-                printInputError();
-            }
+                //Error trapping to see if the input is an integer
+                if(stringChecker( inputValueS ) == 1)
+                {
+                    inputValueI = ::atof(inputValueS.c_str());
+                }
+                if(stringChecker( inputValueS ) == 0)
+                {
+                    printInputError();
+                }
 
-            }while(stringChecker( inputValueS ) == 0);
+            }
+            while(stringChecker( inputValueS ) == 0);
 
             //If 1 is entered, add to luck
             if(inputValueI == 1)
@@ -403,6 +448,8 @@ string mainMenu( bool menuLoad, bool askName)
 
         system ("CLS");
 
+        system("color 7");
+
 
         //Title screen
         cout << endl;
@@ -413,6 +460,8 @@ string mainMenu( bool menuLoad, bool askName)
         cout << "   | |____  _____|  |  | |____  | |  | |  | |      _| |_  | |  \\ \\| | | |___| |       _____|  | | |     | |  | | | |____  | |____ " << endl;
         cout << "   |______| |_______|  |______| |_|  |_|  |_|     |_____| |_|   \\___| |_______|       |_______| |_|     |_|  |_| |______| |______|" << endl;
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+        system("color 2");
         cout << endl;
         cout << ">-                                                    [Press Any Key To Continue]" << endl;
         getch();
@@ -509,5 +558,3 @@ void printInputError()
     cout << ">- [Press Any Key To Continue]" <<endl;
     getch();
 }
-
-

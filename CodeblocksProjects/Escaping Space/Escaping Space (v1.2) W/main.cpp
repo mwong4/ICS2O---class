@@ -84,7 +84,7 @@ int main()
 //First part of the game when you wake up
 void wakingUp(){
 
-    system("color 2");
+    system("color 7");
 
     string inputAnything;
 
@@ -118,7 +118,7 @@ void wakingUp(){
 //This is the normal, non consol header
 void normalHeader(){
 
-    system("color 2");
+    system("color 7");
 
     cout << "========================================================================================" << endl;
     cout << "| press: [A] for action menu || [X] for experience menu || [M] for map || [I] for items " << endl;
@@ -358,7 +358,7 @@ string mainMenu( bool menuLoad, bool askName)
 
         getch();
 
-        system("color 2");
+        system("color 7");
 
         cout << endl;
         cout << ">- Local sever status - Damaged - Working at 58% efficiency" << endl;
@@ -444,7 +444,7 @@ string mainMenu( bool menuLoad, bool askName)
 void consolHeader( string serialCode, string userName, int adminPower)
 {
 
-    system("color 2");
+    system("color 7");
 
     //standard header
     cout << ">- United Nations Space Command (UNSC) Terminal" << endl;
