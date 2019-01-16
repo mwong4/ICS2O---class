@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1547649961 source:c:\users\max wong\desktop\codeblocksprojects\escaping space\escaping space (v2.8)\main.cpp
+	<iostream>
+	<stdlib.h>
+	<conio.h>
+	<string>
+	<math.h>
+	<iomanip>
+	<sstream>
+	<cstdlib>
+
